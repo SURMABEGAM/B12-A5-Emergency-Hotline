@@ -10,6 +10,28 @@ for (let i = 0; i < increaseButtons.length; i++) {
         countDisplay.textContent = count;
     });
 }
+let copyCount = 0; // copy counter
+const copyCountDisplay = document.getElementById("copy-icon");
+const copyButtons = document.querySelectorAll(".copy-btn");
+
+copyButtons.forEach(button => {
+  button.addEventListener("click", function() {
+    const card = button.closest(".bg-white");
+    const serviceNumber = card.querySelector("p.text-xl").innerText;
+
+    navigator.clipboard.writeText(serviceNumber).then(() => {
+      alert(`${serviceNumber} number copied!`);
+
+
+      copyCount+=3;
+      copyCountDisplay.textContent = copyCount;
+    }).catch(err => {
+      alert("Failed to copy!");
+    });
+  });
+});
+
+
 
 let coins =110; 
 const coinDisplay = document.getElementById("coin");
